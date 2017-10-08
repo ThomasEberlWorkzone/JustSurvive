@@ -1,5 +1,6 @@
 package com.pts.justsurvive;
 
-public class JustSurviveMod {
+public class JustSurviveMod
+{
 
 }
