@@ -1,5 +1,10 @@
+------------
+JUST SURVIVE
+------------
+Adds basic survival things.
+
 -------------------------------------------
-Source installation information for modders
+Fresh Source installation information for modders
 -------------------------------------------
 This code follows the Minecraft Forge installation methodology. It will apply
 some small patches to the vanilla MCP source code, giving you and it access 
