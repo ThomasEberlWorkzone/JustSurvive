@@ -1,9 +1,12 @@
 package com.pts.justsurvive.proxy;
 
 import com.pts.justsurvive.JustSurviveProxy;
+import com.pts.justsurvive.management.items.ManageItems;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -27,17 +30,17 @@ public class CommonProxy
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-
+        event.getRegistry().registerAll(ManageItems.ITEM_BANDAGE);
     }
 
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event)
     {
-
+        registerRender(ManageItems.ITEM_BANDAGE);
     }
 
     public static void registerRender(Item item)
     {
-
+        ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
     }
 }
