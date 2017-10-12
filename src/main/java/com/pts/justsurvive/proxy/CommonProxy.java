@@ -33,6 +33,7 @@ public class CommonProxy
         event.getRegistry().registerAll(ManageItems.ITEM_BANDAGE);
     }
 
+    //Please register here all Items, Blocks and other Components
     @SubscribeEvent
     public static void registerRenders(ModelRegistryEvent event)
     {
