@@ -29,7 +29,6 @@ public class Bandage extends Item
     @SubscribeEvent
     public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand)
     {
-
         itemStackIn.setCount(itemStackIn.getCount()-1); //updating the Stack Count
         System.out.println("Bandage used"); //temporary logging
 
