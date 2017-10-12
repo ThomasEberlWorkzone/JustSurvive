@@ -1,3 +1,8 @@
+------------
+JUST SURVIVE
+------------
+Adds basic survival things.
+
 -------------------------------------------
 Fresh Source installation information for modders
 -------------------------------------------
