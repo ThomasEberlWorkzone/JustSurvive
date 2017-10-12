@@ -5,5 +5,5 @@ import net.minecraft.item.Item;
 
 public class ManageItems
 {
-    public static final Item ITEM_BANDAGE = new Bandage("bandage");
+    public static final Item ITEM_BANDAGE = new Bandage("Bandage"); //Create a new bandage
 }
