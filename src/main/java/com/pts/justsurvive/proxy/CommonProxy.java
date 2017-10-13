@@ -38,7 +38,7 @@ public class CommonProxy
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().registerAll(ManageItems.ITEM_BANDAGE);
+        event.getRegistry().registerAll(ManageItems.ITEM_BANDAGE, ManageItems.ITEM_ADRENALIN, ManageItems.ITEM_ANTIBIOTICS, ManageItems.ITEM_SPLINT);
     }
 
     //Please register here all Items, Blocks and other Components
@@ -46,6 +46,9 @@ public class CommonProxy
     public static void registerRenders(ModelRegistryEvent event)
     {
         registerRender(ManageItems.ITEM_BANDAGE);
+        registerRender(ManageItems.ITEM_ADRENALIN);
+        registerRender(ManageItems.ITEM_ANTIBIOTICS);
+        registerRender(ManageItems.ITEM_SPLINT);
     }
 
     public static void registerRender(Item item)
