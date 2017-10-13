@@ -2,6 +2,7 @@ package com.pts.justsurvive.proxy;
 
 import com.pts.justsurvive.JustSurviveProxy;
 import com.pts.justsurvive.eventhandler.ItemEventHandler;
+import com.pts.justsurvive.eventhandler.MechanicEventHandler;
 import com.pts.justsurvive.management.items.ManageItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -22,9 +23,11 @@ public class CommonProxy
 {
     public void preInit(FMLPreInitializationEvent event)
     {
-        ItemEventHandler handler = new ItemEventHandler();
-        MinecraftForge.EVENT_BUS.register(handler);
-        FMLCommonHandler.instance().bus().register(handler);
+        ItemEventHandler itemHandler = new ItemEventHandler();
+        MechanicEventHandler mechanicHandler = new MechanicEventHandler();
+
+        MinecraftForge.EVENT_BUS.register(itemHandler);
+        MinecraftForge.EVENT_BUS.register(mechanicHandler);
     }
     public void init(FMLInitializationEvent event) {}
     public void postInit(FMLPostInitializationEvent event) {}
