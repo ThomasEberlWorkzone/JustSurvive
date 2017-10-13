@@ -1,5 +1,6 @@
 package com.pts.justsurvive.proxy;
 
+import com.pts.justsurvive.crafting.recipes.ItemRecipes;
 import com.pts.justsurvive.management.items.ManageItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -13,20 +14,16 @@ import net.minecraftforge.fml.relauncher.Side;
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy
 {
+    private final ItemRecipes recipes = new ItemRecipes();
+
     @Override
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
 
-        addRecipeForBandage(ManageItems.ITEM_BANDAGE);
-    }
-
-    private void addRecipeForBandage(Item itemToBeCrafted)
-    {
-        GameRegistry.addShapedRecipe(new ResourceLocation("JustSurvive"), null, new ItemStack(itemToBeCrafted),
-                                     "X X",
-                                             " X ",
-                                             "X X",
-                                             'X', Blocks.WOOL);
+        recipes.addRecipeForAdrenalin(ManageItems.ITEM_ADRENALIN);
+        recipes.addRecipeForAntibiotics(ManageItems.ITEM_ANTIBIOTICS);
+        recipes.addRecipeForBandage(ManageItems.ITEM_BANDAGE);
+        recipes.addRecipeForSplint(ManageItems.ITEM_SPLINT);
     }
 }
