@@ -14,13 +14,28 @@ public class ItemEventHandler
 {
     //This Method is called when a Player Rightclicks with an Item in Hand
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onBandageIsUsed(PlayerInteractEvent.RightClickItem event)
+    public void onHealthItemIsUsed(PlayerInteractEvent.RightClickItem event)
     {
         EntityPlayer p = event.getEntityPlayer();
 
         if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_BANDAGE)
         {
             System.out.println("Banadage used");
+            p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
+        }
+        else if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_ADRENALIN)
+        {
+            System.out.println("Adrenalin used");
+            p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
+        }
+        else if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_ANTIBIOTICS)
+        {
+            System.out.println("Antibiotics used");
+            p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
+        }
+        else if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_SPLINT)
+        {
+            System.out.println("Splint used");
             p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
         }
     }
