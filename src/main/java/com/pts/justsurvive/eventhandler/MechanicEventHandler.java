@@ -4,10 +4,9 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
-import net.minecraft.advancements.critereon.EntityHurtPlayerTrigger;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -18,9 +17,9 @@ public class MechanicEventHandler
     private final String DAMAGE_SKELETON = "arrow";
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onEntryToColdBiome(LivingEvent.LivingUpdateEvent event)
+    public void onEntryToColdBiome(BiomeEvent event)
     {
-
+        
     }
 
     //this function is used to handle damage caused to the player, implement further types of damage here

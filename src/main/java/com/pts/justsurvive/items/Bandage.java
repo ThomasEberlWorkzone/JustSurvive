@@ -19,11 +19,13 @@ public class Bandage extends Item
 
         super.setNoRepair();
         super.maxStackSize = MAX_STACK_SIZE;
-        //todo: set use time to a higher amount
     }
 
 
-    //How long it takes to use this Item
+    /*
+        This method sets the duration to use a Bandage
+        You can change this return value if you want
+     */
     @Override
     public int getMaxItemUseDuration(ItemStack stack)
     {
