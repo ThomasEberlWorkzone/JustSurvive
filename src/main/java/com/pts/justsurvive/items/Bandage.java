@@ -2,6 +2,7 @@ package com.pts.justsurvive.items;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class Bandage extends Item
 {
@@ -19,6 +20,14 @@ public class Bandage extends Item
         super.setNoRepair();
         super.maxStackSize = MAX_STACK_SIZE;
         //todo: set use time to a higher amount
+    }
+
+
+    //How long it takes to use this Item
+    @Override
+    public int getMaxItemUseDuration(ItemStack stack)
+    {
+        return 5;
     }
 }
 
