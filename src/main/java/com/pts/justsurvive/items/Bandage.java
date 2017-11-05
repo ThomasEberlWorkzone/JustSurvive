@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 
 public class Bandage extends Item
 {
-    private final int MAX_STACK_SIZE=10;
+    private final int MAX_STACK_SIZE=10, USE_DURATION=5;
     /*
         This item stops the bleeding, if a wound is inflicted on the player
      */
@@ -29,7 +29,7 @@ public class Bandage extends Item
     @Override
     public int getMaxItemUseDuration(ItemStack stack)
     {
-        return 5;
+        return USE_DURATION;
     }
 }
 
