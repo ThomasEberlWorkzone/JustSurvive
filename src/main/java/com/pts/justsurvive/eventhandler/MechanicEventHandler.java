@@ -4,7 +4,10 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
@@ -20,6 +23,20 @@ public class MechanicEventHandler
     public void onEntryToColdBiome(BiomeEvent event)
     {
         
+    }
+
+    //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
+    //At this point in time this function in broken
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onTraverseChunk(EntityEvent.EnteringChunk event)
+    {
+        if(event.getEntity() instanceof  EntityPlayer)
+        {
+            World worldObj = Minecraft.getMinecraft().world;
+            String currentBiome = worldObj.getChunkFromBlockCoords(event.getEntity().getPosition()).
+                    getBiome(event.getEntity().getPosition(),worldObj.getBiomeProvider()).getBiomeName();
+            System.out.println(currentBiome);
+        }
     }
 
     //this function is used to handle damage caused to the player, implement further types of damage here
