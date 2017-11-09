@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,24 +21,15 @@ public class MechanicEventHandler
     private final String DAMAGE_ZOMBIE = "mob";
     private final String DAMAGE_SKELETON = "arrow";
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onEntryToColdBiome(BiomeEvent event)
-    {
-        
-    }
-
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onTraverseChunk(EntityEvent.EnteringChunk event)
+    public void onTraverseChunk(PlayerEvent.EnteringChunk event)
     {
-        if(event.getEntity() instanceof   EntityPlayer)
-        {
             String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
                     getPosition()).getBiomeName();
 
             System.out.println(currentBiome);
-        }
     }
 
     //this function is used to handle damage caused to the player, implement further types of damage here
