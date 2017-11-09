@@ -7,6 +7,7 @@ package com.pts.justsurvive.eventhandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.terraingen.BiomeEvent;
@@ -30,11 +31,11 @@ public class MechanicEventHandler
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onTraverseChunk(EntityEvent.EnteringChunk event)
     {
-        if(event.getEntity() instanceof  EntityPlayer)
+        if(event.getEntity() instanceof   EntityPlayer)
         {
-            World worldObj = Minecraft.getMinecraft().world;
-            String currentBiome = worldObj.getChunkFromBlockCoords(event.getEntity().getPosition()).
-                    getBiome(event.getEntity().getPosition(),worldObj.getBiomeProvider()).getBiomeName();
+            String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
+                    getPosition()).getBiomeName();
+
             System.out.println(currentBiome);
         }
     }
