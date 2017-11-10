@@ -6,6 +6,7 @@ package com.pts.justsurvive.eventhandler;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.event.entity.EntityEvent;
@@ -15,11 +16,11 @@ import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+import java.util.Random;
+
 public class MechanicEventHandler
 {
-    private final String DAMAGE_FALL = "fall";
-    private final String DAMAGE_ZOMBIE = "mob";
-    private final String DAMAGE_SKELETON = "arrow";
+    private boolean bleed = false;
 
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
@@ -34,24 +35,57 @@ public class MechanicEventHandler
 
     //this function is used to handle damage caused to the player, implement further types of damage here
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onPlayerHurt(LivingHurtEvent event)
+    public void onPlayerStartBleeding(LivingHurtEvent event)
     {
+        Random rand = new Random();
+
         if(event.getEntity() instanceof EntityPlayer)
         {
             String damageType = event.getSource().damageType;
-            if(damageType.equals(DAMAGE_FALL))
+            if(damageType.equals(DamageSource.CACTUS.toString()))
             {
-                //calculate chance of broken leg
+                int rando = rand.nextInt(4);
+
+                if(rando == 1)
+                    bleed = true;
+
             }
-            else if(damageType.equals(DAMAGE_ZOMBIE))
+            else if(damageType.equals(DamageSource.FALLING_BLOCK.toString()))
             {
-                //calculate chance of bleeding and infection
+                int rando = rand.nextInt(4);
+
+                if(rando == 1)
+                    bleed = true;
             }
-            else if(damageType.equals(DAMAGE_SKELETON))
+            else if(damageType.equals(DamageSource.IN_WALL.toString()))
             {
-                //calculate chance of bleeding
+                int rando = rand.nextInt(4);
+
+                if(rando == 1)
+                    bleed = true;
+            }
+            else if(damageType.equals("arrow"))
+            {
+                bleed = true;
+            }
+            else if(damageType.equals(DamageSource.causeThornsDamage(event.getEntity())))
+            {
+                int rando = rand.nextInt(4);
+
+                if(rando == 1)
+                    bleed = true;
+            }
+            else if(damageType.equals(DamageSource.causePlayerDamage((EntityPlayer) event.getEntity())))
+            {
+                bleed = true;
+            }
+            else if(damageType.equals(DamageSource.causeMobDamage(event.getEntityLiving())))
+            {
+                int rando = rand.nextInt(3);
+
+                if(rando == 1)
+                    bleed = true;
             }
         }
     }
-
 }
