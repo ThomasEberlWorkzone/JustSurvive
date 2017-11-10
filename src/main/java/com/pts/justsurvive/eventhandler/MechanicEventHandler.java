@@ -42,6 +42,8 @@ public class MechanicEventHandler
         if(event.getEntity() instanceof EntityPlayer)
         {
             String damageType = event.getSource().damageType;
+
+            //Damage caused by Cactus
             if(damageType.equals(DamageSource.CACTUS.toString()))
             {
                 int rando = rand.nextInt(4);
@@ -50,6 +52,7 @@ public class MechanicEventHandler
                     bleed = true;
 
             }
+            //Damage caused by Falling Block
             else if(damageType.equals(DamageSource.FALLING_BLOCK.toString()))
             {
                 int rando = rand.nextInt(4);
@@ -57,6 +60,7 @@ public class MechanicEventHandler
                 if(rando == 1)
                     bleed = true;
             }
+            //Damage caused by stucking in wall
             else if(damageType.equals(DamageSource.IN_WALL.toString()))
             {
                 int rando = rand.nextInt(4);
@@ -64,22 +68,26 @@ public class MechanicEventHandler
                 if(rando == 1)
                     bleed = true;
             }
+            //Damage caused by Arrow
             else if(damageType.equals("arrow"))
             {
                 bleed = true;
             }
-            else if(damageType.equals(DamageSource.causeThornsDamage(event.getEntity())))
+            //Damage caused by Thorns
+            else if(damageType.equals(DamageSource.causeThornsDamage(event.getEntity()).toString()))
             {
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
                     bleed = true;
             }
-            else if(damageType.equals(DamageSource.causePlayerDamage((EntityPlayer) event.getEntity())))
+            //Damage caused by other Player
+            else if(damageType.equals(DamageSource.causePlayerDamage((EntityPlayer) event.getEntity()).toString()))
             {
                 bleed = true;
             }
-            else if(damageType.equals(DamageSource.causeMobDamage(event.getEntityLiving())))
+            //Damage caused by Mob
+            else if(damageType.equals(DamageSource.causeMobDamage(event.getEntityLiving()).toString()))
             {
                 int rando = rand.nextInt(3);
 
