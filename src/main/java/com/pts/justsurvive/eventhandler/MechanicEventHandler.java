@@ -37,8 +37,6 @@ public class MechanicEventHandler
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerStartBleeding(LivingHurtEvent event)
     {
-        MinecraftForge.EVENT_BUS.post(new BleedEvent());
-
         Random rand = new Random();
 
         if(event.getEntity() instanceof EntityPlayer)
@@ -52,7 +50,6 @@ public class MechanicEventHandler
 
                 if(rando == 1)
                     MinecraftForge.EVENT_BUS.post(new BleedEvent());
-
             }
             //Damage caused by Falling Block
             else if(damageType.equals(DamageSource.FALLING_BLOCK.toString()))
