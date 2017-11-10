@@ -4,11 +4,13 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
+import com.pts.justsurvive.eventhandler.customevents.BleedEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -30,13 +32,15 @@ public class MechanicEventHandler
             String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
                     getPosition()).getBiomeName();
 
-            System.out.println(currentBiome);
+            //System.out.println(currentBiome);
     }
 
     //this function is used to handle damage caused to the player, implement further types of damage here
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerStartBleeding(LivingHurtEvent event)
     {
+        MinecraftForge.EVENT_BUS.post(new BleedEvent());
+
         Random rand = new Random();
 
         if(event.getEntity() instanceof EntityPlayer)
@@ -95,5 +99,11 @@ public class MechanicEventHandler
                     bleed = true;
             }
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void test(BleedEvent event)
+    {
+        System.out.println(event.test());
     }
 }

@@ -3,6 +3,7 @@ package com.pts.justsurvive.proxy;
 import com.pts.justsurvive.JustSurviveProxy;
 import com.pts.justsurvive.eventhandler.ItemEventHandler;
 import com.pts.justsurvive.eventhandler.MechanicEventHandler;
+import com.pts.justsurvive.eventhandler.customevents.BleedEvent;
 import com.pts.justsurvive.management.items.ManageItems;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
