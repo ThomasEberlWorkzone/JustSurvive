@@ -23,6 +23,8 @@ import java.util.Random;
 
 public class MechanicEventHandler
 {
+    private Random rand = new Random();
+
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -40,14 +42,12 @@ public class MechanicEventHandler
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerStartBleeding(LivingHurtEvent event)
     {
-        Random rand = new Random();
-
         if(event.getEntity() instanceof EntityPlayer)
         {
             String damageType = event.getSource().damageType;
 
             //Damage caused by Cactus
-            if(damageType.equals(DamageSource.CACTUS.toString()))
+            if(damageType.equals("cactus"))
             {
                 int rando = rand.nextInt(4);
 
@@ -55,7 +55,7 @@ public class MechanicEventHandler
                     MinecraftForge.EVENT_BUS.post(new BleedEvent());
             }
             //Damage caused by Falling Block
-            else if(damageType.equals(DamageSource.FALLING_BLOCK.toString()))
+            else if(damageType.equals("fallingBlock"))
             {
                 int rando = rand.nextInt(4);
 
@@ -63,7 +63,7 @@ public class MechanicEventHandler
                     MinecraftForge.EVENT_BUS.post(new BleedEvent());
             }
             //Damage caused by stucking in wall
-            else if(damageType.equals(DamageSource.IN_WALL.toString()))
+            else if(damageType.equals("inWall"))
             {
                 int rando = rand.nextInt(4);
 
@@ -76,7 +76,7 @@ public class MechanicEventHandler
                 MinecraftForge.EVENT_BUS.post(new BleedEvent());
             }
             //Damage caused by Thorns
-            else if(damageType.equals(DamageSource.causeThornsDamage(event.getEntity()).toString()))
+            else if(damageType.equals("thorns"))
             {
                 int rando = rand.nextInt(4);
 
@@ -84,12 +84,36 @@ public class MechanicEventHandler
                     MinecraftForge.EVENT_BUS.post(new BleedEvent());
             }
             //Damage caused by other Player
-            else if(damageType.equals(DamageSource.causePlayerDamage((EntityPlayer) event.getEntity()).toString()))
+            else if(damageType.equals("player"))
             {
                 MinecraftForge.EVENT_BUS.post(new BleedEvent());
             }
             //Damage caused by Mob
-            else if(damageType.equals(DamageSource.causeMobDamage(event.getEntityLiving()).toString()))
+            else if(damageType.equals("mob"))
+            {
+                int rando = rand.nextInt(3);
+
+                if(rando == 1)
+                    MinecraftForge.EVENT_BUS.post(new BleedEvent());
+            }
+            //Damage caused by explosion
+            else if(damageType.equals("explosion"))
+            {
+                int rando = rand.nextInt(3);
+
+                if(rando == 1)
+                    MinecraftForge.EVENT_BUS.post(new BleedEvent());
+            }
+            //Damage caused by fireball
+            else if(damageType.equals("fireball"))
+            {
+                int rando = rand.nextInt(3);
+
+                if(rando == 1)
+                    MinecraftForge.EVENT_BUS.post(new BleedEvent());
+            }
+            //Damage caused by anvil
+            else if(damageType.equals("anvil"))
             {
                 int rando = rand.nextInt(3);
 
