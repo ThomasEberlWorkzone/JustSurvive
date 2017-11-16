@@ -124,8 +124,8 @@ public class MechanicEventHandler
     }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void test(BleedEvent event)
+    public void onPlayerBleed(BleedEvent event)
     {
-        System.out.println(event.test());
+        //System.out.println(event.test());
     }
 }
