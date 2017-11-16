@@ -6,6 +6,7 @@ package com.pts.justsurvive.eventhandler;
 
 import com.pts.justsurvive.eventhandler.customevents.BleedEvent;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
@@ -25,12 +26,14 @@ public class MechanicEventHandler
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void onTraverseChunk(PlayerEvent.EnteringChunk event)
+    public void onTraverseChunk(EntityEvent.EnteringChunk event)
     {
+        if(event.getEntity() instanceof EntityPlayer) {
             String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
                     getPosition()).getBiomeName();
 
-            //System.out.println(currentBiome);
+            System.out.println(currentBiome);
+        }
     }
 
     //this function is used to handle damage caused to the player, implement further types of damage here
