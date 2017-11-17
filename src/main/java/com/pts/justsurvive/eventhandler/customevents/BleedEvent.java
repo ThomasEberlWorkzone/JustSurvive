@@ -5,17 +5,20 @@ import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class BleedEvent extends Event
 {
-    public BleedEvent()
+    private final BleedThread thread;
+
+    public BleedEvent(BleedThread thread)
     {
         System.out.println("Constructor of BleedEvent called!");
+        this.thread = thread;
     }
 
     public void onPlayerBleed()
     {
         try
         {
-            BleedThread thread = new BleedThread("startBleeding");
-            thread.start();
+            if(thread.isAlive() == false)
+                thread.start();
         }
         catch (Exception e)
         {

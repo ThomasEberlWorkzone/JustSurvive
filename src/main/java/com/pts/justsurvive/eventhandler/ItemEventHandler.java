@@ -1,6 +1,7 @@
 package com.pts.justsurvive.eventhandler;
 
 import com.pts.justsurvive.management.items.ManageItems;
+import com.pts.justsurvive.thread.BleedThread;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;

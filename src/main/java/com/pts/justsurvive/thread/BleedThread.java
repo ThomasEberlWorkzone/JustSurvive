@@ -10,8 +10,9 @@ public class BleedThread extends Thread
     @Override
     public void start()
     {
-        this.setDaemon(true);
-        this.run();
+        System.out.println("Thread wurde gestartet!");
+        //this.setDaemon(true);
+        //this.run();
     }
 
     @Override
