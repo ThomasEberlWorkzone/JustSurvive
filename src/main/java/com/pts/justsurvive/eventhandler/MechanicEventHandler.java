@@ -17,7 +17,7 @@ import java.util.Random;
 public class MechanicEventHandler
 {
     private Random rand = new Random();
-    private BleedThread thread = new BleedThread("startBleeding");
+    public static BleedThread thread = new BleedThread("startBleeding");
 
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
