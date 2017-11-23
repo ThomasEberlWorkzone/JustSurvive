@@ -4,19 +4,11 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
-import com.pts.justsurvive.eventhandler.customevents.BleedEvent;
 import com.pts.justsurvive.thread.BleedThread;
-import net.minecraft.client.Minecraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.terraingen.BiomeEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -54,7 +46,7 @@ public class MechanicEventHandler
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
+                    startBleeding();
             }
             //Damage caused by Falling Block
             else if(damageType.equals("fallingBlock"))
@@ -62,72 +54,64 @@ public class MechanicEventHandler
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by stucking in wall
             else if(damageType.equals("inWall"))
             {
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by Arrow
             else if(damageType.equals("arrow"))
             {
-                MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                startBleeding();            }
             //Damage caused by Thorns
             else if(damageType.equals("thorns"))
             {
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by other Player
             else if(damageType.equals("player"))
             {
-                MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                startBleeding();            }
             //Damage caused by Mob
             else if(damageType.equals("mob"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by explosion
             else if(damageType.equals("explosion"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by fireball
             else if(damageType.equals("fireball"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
-            }
+                    startBleeding();            }
             //Damage caused by anvil
             else if(damageType.equals("anvil"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    MinecraftForge.EVENT_BUS.post(new BleedEvent(thread));
+                    startBleeding();
             }
         }
     }
 
-    @SubscribeEvent(priority = EventPriority.HIGH)
-    public void startBleeding(BleedEvent event)
+    private void startBleeding()
     {
-        event.onPlayerBleed();
+        if(thread.isAlive() == false)
+            thread.start();
     }
 }
