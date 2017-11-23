@@ -21,7 +21,7 @@ public class BleedThread extends Thread
         System.out.println("run() head: " + this.isAlive());
         while(true)
         {
-
+            
         }
     }
 }
