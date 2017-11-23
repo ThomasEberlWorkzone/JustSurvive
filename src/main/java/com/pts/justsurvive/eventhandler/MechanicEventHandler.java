@@ -46,7 +46,7 @@ public class MechanicEventHandler
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    startBleeding();
+                    startBleeding((EntityPlayer) event.getEntity());
             }
             //Damage caused by Falling Block
             else if(damageType.equals("fallingBlock"))
@@ -54,64 +54,67 @@ public class MechanicEventHandler
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by stucking in wall
             else if(damageType.equals("inWall"))
             {
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by Arrow
             else if(damageType.equals("arrow"))
             {
-                startBleeding();            }
+                startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by Thorns
             else if(damageType.equals("thorns"))
             {
                 int rando = rand.nextInt(4);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by other Player
             else if(damageType.equals("player"))
             {
-                startBleeding();            }
+                startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by Mob
             else if(damageType.equals("mob"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by explosion
             else if(damageType.equals("explosion"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by fireball
             else if(damageType.equals("fireball"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    startBleeding();            }
+                    startBleeding((EntityPlayer) event.getEntity());            }
             //Damage caused by anvil
             else if(damageType.equals("anvil"))
             {
                 int rando = rand.nextInt(3);
 
                 if(rando == 1)
-                    startBleeding();
+                    startBleeding((EntityPlayer) event.getEntity());
             }
         }
     }
 
-    private void startBleeding()
+    private void startBleeding(EntityPlayer player)
     {
         if(thread.isAlive() == false)
+        {
+            thread.setLivingEntityBase(player);
             thread.start();
+        }
     }
 }
