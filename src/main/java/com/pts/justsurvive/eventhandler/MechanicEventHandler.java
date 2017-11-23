@@ -4,11 +4,13 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
+import com.pts.justsurvive.mechanics.Bleed;
 import com.pts.justsurvive.thread.BleedThread;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.EntityEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
@@ -107,6 +109,25 @@ public class MechanicEventHandler
                     startBleeding((EntityPlayer) event.getEntity());
             }
         }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void onPlayerDie(LivingDeathEvent event)
+    {
+        if(event.getEntity().isDead)
+        {
+            if(thread.isAlive())
+            {
+                thread.interrupt();
+                thread = new BleedThread("bleedThread");
+                Bleed.getInstance().setBloodAmount(20f);
+            }
+        }
+    }
+
+    public void onGameSetToPause(WorldEvent event)
+    {
+
     }
 
     private void startBleeding(EntityPlayer player)

@@ -32,7 +32,7 @@ public class BleedThread extends Thread
         {
             while(!currentThread().isInterrupted())
             {
-                this.sleep(5000);
+                this.sleep(1000);
 
                 System.out.println("Blood before: " + Bleed.getInstance().getBloodAmount());
                 Bleed.getInstance().setBloodAmount(Bleed.getInstance().getBloodAmount() - 1f);

@@ -26,6 +26,9 @@ public class Bleed
 
     public void setBloodAmount(float bloodAmount)
     {
-        this.bloodAmount = bloodAmount;
+        if(bloodAmount > 1)
+            this.bloodAmount = bloodAmount;
+        if(bloodAmount <= 1f && bloodAmount >= 0f)
+            this.bloodAmount = 1f;
     }
 }
