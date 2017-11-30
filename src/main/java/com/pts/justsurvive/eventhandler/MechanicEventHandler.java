@@ -122,10 +122,12 @@ public class MechanicEventHandler
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onPlayerDie(LivingDeathEvent event)
     {
-        if(event.getEntity().isDead)
+        System.out.println("living death");
+        if(event.getEntity() instanceof EntityPlayer)
         {
             if(thread.isAlive())
             {
+                System.out.println("dead");
                 thread.interrupt();
                 thread = new BleedThread("bleedThread");
                 Bleed.getInstance().setBloodAmount(20f);
