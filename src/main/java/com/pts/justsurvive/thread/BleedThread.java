@@ -39,7 +39,7 @@ public class BleedThread extends Thread
                 System.out.println("Blood afterwards: " + Bleed.getInstance().getBloodAmount());
 
                 if(Bleed.getInstance().getBloodAmount() <= 10)
-                    player.attackEntityFrom(DamageSource.MAGIC, 1f);
+                    player.attackEntityFrom(DamageSource.GENERIC, 1f);
             }
         }
         catch (InterruptedException e)
