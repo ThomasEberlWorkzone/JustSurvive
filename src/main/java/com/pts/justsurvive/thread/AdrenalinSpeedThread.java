@@ -29,6 +29,7 @@ public class AdrenalinSpeedThread extends Thread
         {
             while(!currentThread().isInterrupted())
             {
+                //ToDo: https://stackoverflow.com/questions/19254433/best-method-to-pause-a-thread
                 player.setAIMoveSpeed(speed * 1.5f);
                 this.sleep(10000);
                 player.setAIMoveSpeed(speed);
