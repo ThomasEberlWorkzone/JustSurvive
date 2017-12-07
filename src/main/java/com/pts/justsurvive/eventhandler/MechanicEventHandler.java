@@ -51,7 +51,11 @@ public class MechanicEventHandler
             System.out.println("Game paused");
             pauseMenu = event.getGui();
             gameIsPaused = true;
-            //todo: thread pauseieren
+
+            if(thread.isAlive()) {
+                thread.interrupt();
+                thread = new BleedThread("startBleeding");
+            }
         }
     }
 
@@ -63,7 +67,8 @@ public class MechanicEventHandler
             if(Minecraft.getMinecraft().currentScreen != pauseMenu) {
                 gameIsPaused = false;
                 System.out.println("Game continued");
-                //todo: thread weiterlaufen lassen
+
+                thread.start();
             }
         }
     }
