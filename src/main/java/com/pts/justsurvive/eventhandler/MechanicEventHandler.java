@@ -5,11 +5,13 @@ package com.pts.justsurvive.eventhandler;
  */
 
 import com.pts.justsurvive.mechanics.Bleed;
+import com.pts.justsurvive.thread.AdrenalinSpeedThread;
 import com.pts.justsurvive.thread.BleedThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.GuiScreenEvent;
@@ -34,14 +36,14 @@ public class MechanicEventHandler
     //At this point in time this function in broken
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void onTraverseChunk(EntityEvent.EnteringChunk event)
-    {
-        if(event.getEntity() instanceof EntityPlayer) {
-            String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
-                    getPosition()).getBiomeName();
+{
+    if(event.getEntity() instanceof EntityPlayer) {
+        String currentBiome = event.getEntity().getEntityWorld().getBiome(event.getEntity().
+                getPosition()).getBiomeName();
 
-            System.out.println(currentBiome);
-        }
+        System.out.println(currentBiome);
     }
+}
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public void OnGamePaused(GuiOpenEvent event)
@@ -165,6 +167,13 @@ public class MechanicEventHandler
                 thread.interrupt();
                 thread = new BleedThread("bleedThread");
                 Bleed.getInstance().setBloodAmount(20f);
+            }
+
+            if(ItemEventHandler.adrenalinThread.isAlive())
+            {
+                System.out.println("dead");
+                ItemEventHandler.adrenalinThread.interrupt();
+                ItemEventHandler.adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
             }
         }
     }

@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemEventHandler
 {
-    private AdrenalinSpeedThread adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
+    public static AdrenalinSpeedThread adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
 
     //This Method is called when a Player Rightclicks with an Item in Hand
     @SubscribeEvent(priority = EventPriority.HIGH)
