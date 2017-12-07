@@ -6,7 +6,13 @@ package com.pts.justsurvive.eventhandler;
 
 import com.pts.justsurvive.mechanics.Bleed;
 import com.pts.justsurvive.thread.BleedThread;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiIngameMenu;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.GuiOpenEvent;
+import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.event.entity.EntityEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingHurtEvent;
@@ -21,6 +27,9 @@ public class MechanicEventHandler
     private Random rand = new Random();
     public static BleedThread thread = new BleedThread("startBleeding");
 
+    private GuiScreen pauseMenu = null;
+    private boolean gameIsPaused = false;
+
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -31,6 +40,31 @@ public class MechanicEventHandler
                     getPosition()).getBiomeName();
 
             System.out.println(currentBiome);
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public void OnGamePaused(GuiOpenEvent event)
+    {
+        if(event.getGui() instanceof GuiIngameMenu)
+        {
+            System.out.println("Game paused");
+            pauseMenu = event.getGui();
+            gameIsPaused = true;
+            //todo: thread pauseieren
+        }
+    }
+
+    @SubscribeEvent(priority = EventPriority.LOW)
+    public void OnGameContinued(GuiOpenEvent event)
+    {
+        if(gameIsPaused && !(event.getGui() instanceof  GuiIngameMenu))
+        {
+            if(Minecraft.getMinecraft().currentScreen != pauseMenu) {
+                gameIsPaused = false;
+                System.out.println("Game continued");
+                //todo: thread weiterlaufen lassen
+            }
         }
     }
 
@@ -133,11 +167,6 @@ public class MechanicEventHandler
                 Bleed.getInstance().setBloodAmount(20f);
             }
         }
-    }
-
-    public void onGameSetToPause(WorldEvent event)
-    {
-
     }
 
     private void startBleeding(EntityPlayer player)
