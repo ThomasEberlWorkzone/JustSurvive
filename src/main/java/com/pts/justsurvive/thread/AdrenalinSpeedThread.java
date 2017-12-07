@@ -28,10 +28,10 @@ public class AdrenalinSpeedThread extends Thread
         int counter = 0;
         try
         {
-            while(counter < 100)
+            while(counter < 1000)
             {
                 player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.8D);
-                this.sleep(100);
+                this.sleep(10);
                 counter++;
                 System.out.println(counter);
             }
