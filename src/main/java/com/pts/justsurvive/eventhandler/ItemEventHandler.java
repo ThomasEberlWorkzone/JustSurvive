@@ -43,8 +43,6 @@ public class ItemEventHandler
 
             adrenalinThread = new AdrenalinSpeedThread("startAdrenalineRush");
 
-            double speed = p.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue();
-
             if(adrenalinThread.isAlive() == false)
             {
                 adrenalinThread.setPlayer(p);

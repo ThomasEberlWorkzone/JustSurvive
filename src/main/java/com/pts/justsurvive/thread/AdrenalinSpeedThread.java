@@ -1,6 +1,5 @@
 package com.pts.justsurvive.thread;
 
-import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class AdrenalinSpeedThread extends Thread
@@ -25,18 +24,16 @@ public class AdrenalinSpeedThread extends Thread
 
     public void run()
     {
-        int counter = 0;
+        float speed = player.getAIMoveSpeed();
         try
         {
-            while(counter < 1000)
+            while(!currentThread().isInterrupted())
             {
-                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.7D);
-                this.sleep(10);
-                counter++;
-                System.out.println(counter);
+                player.setAIMoveSpeed(speed * 1.5f);
+                this.sleep(10000);
+                player.setAIMoveSpeed(speed);
+                Thread.currentThread().interrupt();
             }
-            System.out.println("10 sek vorbei");
-            Thread.currentThread().interrupt();
         }
         catch (InterruptedException e)
         {
