@@ -17,7 +17,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public class ItemEventHandler
 {
-    private AdrenalinSpeedThread thread;
+    public static AdrenalinSpeedThread adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
 
     //This Method is called when a Player Rightclicks with an Item in Hand
     @SubscribeEvent(priority = EventPriority.HIGH)
@@ -41,17 +41,13 @@ public class ItemEventHandler
             System.out.println("Adrenalin used");
             p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
 
-            thread = new AdrenalinSpeedThread("startAdrenalineRush");
+            adrenalinThread = new AdrenalinSpeedThread("startAdrenalineRush");
 
-            double speed = p.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getBaseValue();
-
-            if(thread.isAlive() == false)
+            if(adrenalinThread.isAlive() == false)
             {
-                thread.setPlayer(p);
-                thread.start();
+                adrenalinThread.setPlayer(p);
+                adrenalinThread.start();
             }
-//            else
-//                p.onDeath(DamageSource.GENERIC);
         }
         else if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_ANTIBIOTICS)
         {
