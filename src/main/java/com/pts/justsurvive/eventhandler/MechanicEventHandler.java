@@ -31,6 +31,7 @@ public class MechanicEventHandler
 
     private GuiScreen pauseMenu = null;
     private boolean gameIsPaused = false;
+    private boolean isBleeding = false;
 
     //This function is called, when the player enters a different chunk and determines, which biome the chunk belongs to
     //At this point in time this function in broken
@@ -46,7 +47,7 @@ public class MechanicEventHandler
 }
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public void OnGamePaused(GuiOpenEvent event)
+    public void onGamePaused(GuiOpenEvent event)
     {
         if(event.getGui() instanceof GuiIngameMenu)
         {
@@ -57,12 +58,13 @@ public class MechanicEventHandler
             if(thread.isAlive()) {
                 thread.interrupt();
                 thread = new BleedThread("startBleeding");
+                isBleeding = true;
             }
         }
     }
 
     @SubscribeEvent(priority = EventPriority.LOW)
-    public void OnGameContinued(GuiOpenEvent event)
+    public void onGameContinued(GuiOpenEvent event)
     {
         if(gameIsPaused && !(event.getGui() instanceof  GuiIngameMenu))
         {
@@ -70,7 +72,8 @@ public class MechanicEventHandler
                 gameIsPaused = false;
                 System.out.println("Game continued");
 
-                thread.start();
+                if(thread.isAlive() == false && isBleeding)
+                    thread.start();
             }
         }
     }
@@ -187,6 +190,7 @@ public class MechanicEventHandler
     {
         if(thread.isAlive() == false)
         {
+            isBleeding = true;
             thread.setLivingEntityBase(player);
             thread.start();
         }

@@ -1,5 +1,6 @@
 package com.pts.justsurvive.thread;
 
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 
 public class AdrenalinSpeedThread extends Thread
@@ -24,17 +25,19 @@ public class AdrenalinSpeedThread extends Thread
 
     public void run()
     {
-        float speed = player.getAIMoveSpeed();
+        int counter = 0;
         try
         {
-            while(!currentThread().isInterrupted())
+            while(counter < 1000)
             {
                 //ToDo: https://stackoverflow.com/questions/19254433/best-method-to-pause-a-thread
-                player.setAIMoveSpeed(speed * 1.5f);
-                this.sleep(10000);
-                player.setAIMoveSpeed(speed);
-                Thread.currentThread().interrupt();
+                player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.8D);
+                this.sleep(10);
+                counter++;
+                System.out.println(counter);
             }
+            System.out.println("10 sek vorbei");
+            Thread.currentThread().interrupt();
         }
         catch (InterruptedException e)
         {
