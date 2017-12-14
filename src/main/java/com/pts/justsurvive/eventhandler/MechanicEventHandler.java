@@ -60,6 +60,9 @@ public class MechanicEventHandler
                 thread = new BleedThread("startBleeding");
                 isBleeding = true;
             }
+
+            if(ItemEventHandler.adrenalinThread.isAlive())
+                ItemEventHandler.adrenalinThread.pauseThread();
         }
     }
 
@@ -74,6 +77,9 @@ public class MechanicEventHandler
 
                 if(thread.isAlive() == false && isBleeding)
                     thread.start();
+
+                if(ItemEventHandler.adrenalinThread.isThreadPaused())
+                    ItemEventHandler.adrenalinThread.resumeThread();
             }
         }
     }
