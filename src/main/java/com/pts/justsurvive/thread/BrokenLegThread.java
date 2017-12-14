@@ -6,7 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 public class BrokenLegThread extends Thread
 {
     private EntityPlayer player;
-    private final double BROKEN_LEG_MOVEMENT_SPEED = 0.5f;
+    private final double BROKEN_LEG_MOVEMENT_SPEED = 0.05f;
 
     public BrokenLegThread(String name)
     {
@@ -26,6 +26,7 @@ public class BrokenLegThread extends Thread
 
     public void run()
     {
+        System.out.println("Player leg broken");
         try
         {
             while(!currentThread().isInterrupted())

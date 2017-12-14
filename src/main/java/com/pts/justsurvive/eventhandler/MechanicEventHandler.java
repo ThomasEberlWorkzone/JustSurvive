@@ -7,6 +7,7 @@ package com.pts.justsurvive.eventhandler;
 import com.pts.justsurvive.mechanics.Bleed;
 import com.pts.justsurvive.thread.AdrenalinSpeedThread;
 import com.pts.justsurvive.thread.BleedThread;
+import com.pts.justsurvive.thread.BrokenLegThread;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiIngameMenu;
 import net.minecraft.client.gui.GuiScreen;
@@ -28,6 +29,7 @@ public class MechanicEventHandler
 {
     private Random rand = new Random();
     public static BleedThread thread = new BleedThread("startBleeding");
+    public static BrokenLegThread brokenLegThread = new BrokenLegThread("LegBroken");
 
     private GuiScreen pauseMenu = null;
     private boolean gameIsPaused = false;
@@ -166,6 +168,19 @@ public class MechanicEventHandler
                 if(rando == 1)
                     startBleeding((EntityPlayer) event.getEntity());
             }
+            //Damage caused by falling
+            else if(damageType.equals("fall"))
+            {
+                //Threshold for not breaking a leg
+                if(event.getAmount()>2)
+                {
+                    if(!brokenLegThread.isAlive())
+                    {
+                        brokenLegThread.setPlayer((EntityPlayer)event.getEntity());
+                        brokenLegThread.start();
+                    }
+                }
+            }
         }
     }
 
@@ -188,6 +203,13 @@ public class MechanicEventHandler
                 System.out.println("dead");
                 ItemEventHandler.adrenalinThread.interrupt();
                 ItemEventHandler.adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
+            }
+
+            if(brokenLegThread.isAlive())
+            {
+                System.out.println("dead");
+                brokenLegThread.interrupt();
+                brokenLegThread = new BrokenLegThread("LegBroken");
             }
         }
     }
