@@ -4,6 +4,7 @@ import com.pts.justsurvive.management.items.ManageItems;
 import com.pts.justsurvive.mechanics.Bleed;
 import com.pts.justsurvive.thread.AdrenalinSpeedThread;
 import com.pts.justsurvive.thread.BleedThread;
+import com.pts.justsurvive.thread.BrokenLegThread;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
@@ -58,6 +59,12 @@ public class ItemEventHandler
         {
             System.out.println("Splint used");
             p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
+
+            if(MechanicEventHandler.brokenLegThread.isAlive()) {
+                MechanicEventHandler.brokenLegThread.interrupt();
+                MechanicEventHandler.brokenLegThread = new BrokenLegThread("BrokenLeg");
+            }
+
         }
     }
 }
