@@ -2,10 +2,10 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "Textures/Download",
-		"1": "Textures/0515B5",
-		"2": "Textures/b52bbf17929c8da830fed3f2705d123c--dark-blue-color-blue-colors",
-		"particle": "Textures/Download"
+		"0": "justsurvive:items/Download",
+		"1": "justsurvive:items/0515B5",
+		"2": "justsurvive:items/b52bbf17929c8da830fed3f2705d123c--dark-blue-color-blue-colors",
+		"particle": "justsurvive:items/Download"
 	},
 	"elements": [
 		{

@@ -2,12 +2,12 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "Textures/Metallic-Grey",
-		"1": "Textures/black",
-		"2": "Textures/Orange",
-		"3": "Textures/Download",
-		"4": "Textures/green_poison_by_oelje",
-		"particle": "Textures/Metallic-Grey"
+		"0": "justsurvive:items/Metallic-Grey",
+		"1": "justsurvive:items/black",
+		"2": "justsurvive:items/Orange",
+		"3": "justsurvive:items/Download",
+		"4": "justsurvive:items/green_poison_by_oelje",
+		"particle": "justsurvive:items/Metallic-Grey"
 	},
 	"elements": [
 		{

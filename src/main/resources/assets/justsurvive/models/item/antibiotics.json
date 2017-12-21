@@ -1,11 +1,11 @@
 {
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"textures": {
-		"0": "Textures/radiator",
-		"1": "Textures/Download",
-		"2": "Textures/pills",
-		"3": "Textures/kachelofen_farbe_orange",
-		"particle": "Textures/radiator"
+		"0": "justsurvive:items/radiator",
+		"1": "justsurvive:items/Download",
+		"2": "justsurvive:items/pills",
+		"3": "justsurvive:items/kachelofen_farbe_orange",
+		"particle": "justsurvive:items/radiator"
 	},
 	"elements": [
 		{

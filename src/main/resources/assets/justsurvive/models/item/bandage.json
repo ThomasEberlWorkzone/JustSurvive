@@ -2,9 +2,9 @@
 	"credit": "Made with Blockbench, a free, modern block model editor by JannisX11",
 	"ambientocclusion": false,
 	"textures": {
-		"0": "Textures/just_beige_gold_beige",
-		"1": "Textures/pflaster",
-		"particle": "Textures/just_beige_gold_beige"
+		"0": "justsurvive:items/just_beige_gold_beige",
+		"1": "justsurvive:items/pflaster",
+		"particle": "justsurvive:items/just_beige_gold_beige"
 	},
 	"elements": [
 		{

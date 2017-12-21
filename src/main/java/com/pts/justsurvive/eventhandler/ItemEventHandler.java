@@ -42,8 +42,6 @@ public class ItemEventHandler
             System.out.println("Adrenalin used");
             p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
 
-            adrenalinThread = new AdrenalinSpeedThread("startAdrenalineRush");
-
             if(adrenalinThread.isAlive() == false)
             {
                 adrenalinThread.setPlayer(p);
@@ -66,5 +64,11 @@ public class ItemEventHandler
             }
 
         }
+    }
+
+    public static void adrenalineThreadIsFinished()
+    {
+        System.out.println("new adrenalinThread");
+        adrenalinThread = new AdrenalinSpeedThread("startAdrenalinRush");
     }
 }

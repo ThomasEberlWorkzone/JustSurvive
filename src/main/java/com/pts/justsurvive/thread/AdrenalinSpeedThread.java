@@ -1,5 +1,6 @@
 package com.pts.justsurvive.thread;
 
+import com.pts.justsurvive.eventhandler.ItemEventHandler;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -46,13 +47,16 @@ public class AdrenalinSpeedThread extends Thread
                 }
                 else
                 {
-                    player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.8D);
+                    player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.2D);
                     counter++;
+                    System.out.println(counter);
                     currentThread().sleep(10);
                 }
             }
             System.out.println("10 sek vorbei");
-            Thread.currentThread().interrupt();
+            player.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.1D);
+            ItemEventHandler.adrenalineThreadIsFinished();
+            this.interrupt();
         }
         catch (InterruptedException e)
         {
