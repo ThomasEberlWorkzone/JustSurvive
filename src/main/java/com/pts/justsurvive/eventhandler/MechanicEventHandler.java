@@ -4,6 +4,7 @@ package com.pts.justsurvive.eventhandler;
     This class is used to handle events of all different mechanics
  */
 
+import com.pts.justsurvive.gui.MechanicOverlay;
 import com.pts.justsurvive.mechanics.Bleed;
 import com.pts.justsurvive.thread.AdrenalinSpeedThread;
 import com.pts.justsurvive.thread.BleedThread;
@@ -176,6 +177,9 @@ public class MechanicEventHandler
                 {
                     if(!brokenLegThread.isAlive())
                     {
+                        MechanicOverlay drawer = new MechanicOverlay();
+                        drawer.displayBrokenLeg();
+
                         brokenLegThread.setPlayer((EntityPlayer)event.getEntity());
                         brokenLegThread.start();
                     }
