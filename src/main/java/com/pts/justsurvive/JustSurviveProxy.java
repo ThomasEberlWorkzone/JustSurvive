@@ -37,6 +37,5 @@ public class JustSurviveProxy
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit(event);
-        MinecraftForge.EVENT_BUS.register(new RenderGuiHandler());
     }
 }
