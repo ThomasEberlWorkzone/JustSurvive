@@ -177,9 +177,6 @@ public class MechanicEventHandler
                 {
                     if(!brokenLegThread.isAlive())
                     {
-                        MechanicOverlay drawer = new MechanicOverlay();
-                        drawer.displayBrokenLeg();
-
                         brokenLegThread.setPlayer((EntityPlayer)event.getEntity());
                         brokenLegThread.start();
                     }

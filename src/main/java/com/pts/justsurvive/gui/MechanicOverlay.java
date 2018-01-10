@@ -1,20 +1,39 @@
 package com.pts.justsurvive.gui;
 
-import com.pts.justsurvive.JustSurviveProxy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.client.gui.ScaledResolution;
+import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 //This class is used to display certain GUI elements, when needed
 public class MechanicOverlay extends Gui
 {
-    private static final ResourceLocation broken_leg_loc =
-            new ResourceLocation(JustSurviveProxy.MODID,"textures/gui/broken_leg.png");
+    private int screenWidth, screenHeight;
+    public MechanicOverlay(Minecraft mc)
+    {
+        ScaledResolution scaled = new ScaledResolution(mc);
+        screenWidth = scaled.getScaledWidth();
+        screenHeight = scaled.getScaledHeight();
+
+
+        drawCenteredString
+                (mc.fontRenderer, "Hello World", screenWidth / 2, (screenHeight / 2) - 4, Integer.parseInt("FFAA00", 16));
+
+    }
+
+    private int bloodBarLength = 200;
 
     public static void displayBrokenLeg()
     {
-        Minecraft mc = Minecraft.getMinecraft();
-        mc.renderEngine.bindTexture(broken_leg_loc);
-        drawModalRectWithCustomSizedTexture(0,0,0,0,50,50,50,50);
+
     }
+
+    /*
+    @SubscribeEvent
+    public static void renderBloodBar(RenderGameOverlayEvent event)
+    {
+
+    }
+    */
 }

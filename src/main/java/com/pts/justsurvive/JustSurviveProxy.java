@@ -1,6 +1,8 @@
 package com.pts.justsurvive;
 
+import com.pts.justsurvive.gui.RenderGuiHandler;
 import com.pts.justsurvive.proxy.CommonProxy;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -35,5 +37,6 @@ public class JustSurviveProxy
     public void postInit(FMLPostInitializationEvent event)
     {
         proxy.postInit(event);
+        MinecraftForge.EVENT_BUS.register(new RenderGuiHandler());
     }
 }
