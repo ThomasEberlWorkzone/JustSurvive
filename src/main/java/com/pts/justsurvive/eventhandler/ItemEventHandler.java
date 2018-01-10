@@ -52,6 +52,10 @@ public class ItemEventHandler
         {
             System.out.println("Antibiotics used");
             p.getHeldItemMainhand().setCount(p.getHeldItemMainhand().getCount() - 1);
+
+            Bleed.getInstance().addBloodAmount(2.5f);
+
+            System.out.println("" + Bleed.getInstance().getBloodAmount());
         }
         else if(p.getHeldItemMainhand().getItem() == ManageItems.ITEM_SPLINT)
         {

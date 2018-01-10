@@ -29,4 +29,12 @@ public class Bleed
         if(bloodAmount > 0)
             this.bloodAmount = bloodAmount;
     }
+
+    public void addBloodAmount(float bloodAmount)
+    {
+        if(this.bloodAmount <= 17.5f)
+            this.bloodAmount += bloodAmount;
+        else
+            this.bloodAmount = 20f;
+    }
 }
