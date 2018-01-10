@@ -1,5 +1,6 @@
 package com.pts.justsurvive.thread;
 
+import com.pts.justsurvive.mechanics.BrokenLeg;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -26,6 +27,7 @@ public class BrokenLegThread extends Thread
 
     public void run()
     {
+        BrokenLeg.getInstance().setLegStateChanged(true);
         System.out.println("Player leg broken");
         try
         {
@@ -37,6 +39,7 @@ public class BrokenLegThread extends Thread
         }
         catch (InterruptedException e)
         {
+            BrokenLeg.getInstance().setLegStateChanged(false);
             System.out.println("Broken Leg Thread interrupted");
         }
     }

@@ -1,6 +1,7 @@
 package com.pts.justsurvive.thread;
 
 import com.pts.justsurvive.mechanics.Bleed;
+import com.pts.justsurvive.mechanics.BrokenLeg;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.DamageSource;
 import net.minecraftforge.common.MinecraftForge;

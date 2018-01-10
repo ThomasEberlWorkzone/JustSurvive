@@ -1,6 +1,7 @@
 package com.pts.justsurvive.gui;
 
 import com.pts.justsurvive.mechanics.Bleed;
+import com.pts.justsurvive.mechanics.BrokenLeg;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -15,7 +16,7 @@ public class RenderGuiHandler
     {
         if (event.getType() != RenderGameOverlayEvent.ElementType.EXPERIENCE){ return;}
 
-        new MechanicOverlay(Minecraft.getMinecraft(), Bleed.getInstance().getBloodAmount());
+        new MechanicOverlay(Minecraft.getMinecraft(), Bleed.getInstance().getBloodAmount(), BrokenLeg.getInstance().getLegBroken());
     }
 
 

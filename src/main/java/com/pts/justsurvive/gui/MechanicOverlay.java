@@ -14,7 +14,7 @@ public class MechanicOverlay extends Gui
     private int screenWidth, screenHeight, bloodAmount;
     private Minecraft mcInstance;
 
-    public MechanicOverlay(Minecraft mc, float bloodAmount)
+    public MechanicOverlay(Minecraft mc, float bloodAmount, boolean legBroken)
     {
         mcInstance = mc;
         this.bloodAmount = (int)bloodAmount;
@@ -24,20 +24,12 @@ public class MechanicOverlay extends Gui
         screenHeight = scaled.getScaledHeight();
 
 
-        drawCenteredString(mc.fontRenderer, "Blood: " + bloodAmount, 25, 10, Color.RED.getRGB());
+        drawCenteredString(mc.fontRenderer, "Blood: " + bloodAmount, 35, 10, Color.RED.getRGB());
 
-
-    }
-
-    private int bloodBarLength = 200;
-
-    public  void displayBrokenLeg()
-    {
+        if(legBroken) {
+            drawCenteredString(mc.fontRenderer, "Broken Leg", 35, 40, Color.RED.getRGB());
+        }
 
     }
 
-    public void adjustBloodAmount(float newAmount)
-    {
-        drawCenteredString(mcInstance.fontRenderer, "Blood:" + newAmount, 25, 10, Color.RED.getRGB());
-    }
 }
