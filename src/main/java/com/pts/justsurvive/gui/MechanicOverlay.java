@@ -11,19 +11,20 @@ import java.awt.*;
 //This class is used to display certain GUI elements, when needed
 public class MechanicOverlay extends Gui
 {
-    private int screenWidth, screenHeight;
+    private int screenWidth, screenHeight, bloodAmount;
     private Minecraft mcInstance;
 
-    public MechanicOverlay(Minecraft mc)
+    public MechanicOverlay(Minecraft mc, float bloodAmount)
     {
         mcInstance = mc;
+        this.bloodAmount = (int)bloodAmount;
 
         ScaledResolution scaled = new ScaledResolution(mc);
         screenWidth = scaled.getScaledWidth();
         screenHeight = scaled.getScaledHeight();
 
 
-        drawCenteredString(mc.fontRenderer, "Blood: 20", 25, 10, Color.RED.getRGB());
+        drawCenteredString(mc.fontRenderer, "Blood: " + bloodAmount, 25, 10, Color.RED.getRGB());
 
 
     }
