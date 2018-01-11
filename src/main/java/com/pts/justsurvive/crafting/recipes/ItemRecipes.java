@@ -24,7 +24,7 @@ public class ItemRecipes
         GameRegistry.addShapedRecipe(new ResourceLocation("JustSurvive"), null, new ItemStack(itemToBeCrafted),
                 "  Z",
                         "XYZ",
-                        "  z",
+                        "  Z",
                         'X', Blocks.GLASS,
                         'Y', new ItemStack(Items.DYE,1,2),
                         'Z', Items.IRON_INGOT);
